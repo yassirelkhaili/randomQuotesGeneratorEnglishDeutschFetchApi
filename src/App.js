@@ -12,8 +12,13 @@ const App = () => {
       setjoke(data);
     }
     fetchJokes();
+    changeColor();
   }, []);
-
+  const changeColor = () => {
+    const colors = ["#9b59b6", "#3498db", "#bdc3c7", "#f1c40f", "#2ecc71", "#ecf0f1"]
+    let randomIndex = Math.floor(Math.random() * colors.length);
+    document.body.style.backgroundColor = colors[randomIndex];
+  }
   const getNewJoke = () => {
     const myFrom = document.getElementById("form");
     if (myFrom.value === "english") {
@@ -25,6 +30,7 @@ const App = () => {
         setjoke(data);
       }
       fetchJokes();
+      changeColor();
     } else if (myFrom.value === "deutsch") {
       async function fetchJokes() {
         const response = await fetch(
@@ -34,6 +40,7 @@ const App = () => {
         setjoke(data);
       }
       fetchJokes();
+      changeColor();
     } else {
       setjoke(
           {
@@ -48,7 +55,7 @@ const App = () => {
       <div id="text">
         {joke.joke ? (
           <>
-            <p id="joke">{joke.joke}</p>
+            <p id="joke" className="fw-bolder">{joke.joke}</p>
           </>
         ) : (
           <>
